@@ -1,0 +1,128 @@
+﻿@{
+    ViewData["Title"] = "Deletion and Updation";
+    //string path = "C:/Users/lamba.chanu/Downloads/del.png";
+}
+
+@* <div class="text-center"> *@
+@*     <h1 class="display-4">Welcome</h1> *@
+@*     <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p> *@
+@* </div> *@
+@model IEnumerable<DeleteIconPro.Models.Person>
+
+<h2 style="text-align: center">Persons List</h2>
+<table id="personTable" >
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th style="text-align:center">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var per in Model)
+        {
+            <tr id="row-@per.Id">
+               
+                <td><div class="container">
+                        <span class="person-name" id="name-@per.Id">@per.Name</span><br />
+                        <input type="text" class="edit-name" id="input-@per.Id" value="@per.Name" style="display:none;" />
+                </div> 
+                </td>
+
+                <td>
+                    <button class="delete_btn" data-id="@per.Id" style="text-align: center">
+                        <img src="~/img/del.png" alt="Delete" width="30" height="30"  />
+                      
+                    </button>
+                    <button class="edit-btn" data-id="@per.Id" style="text-align: center">
+						<img src="~/img/edit.png" alt="Edit" width="30" height="30"/>
+                    </button>
+                    <button class="save-btn" data-id="@per.Id" style="display:none;text-align: center">
+                        <img src="~/img/done.png" alt="done" width="30" height="30" />
+                    </button>
+                    <button class="cancel-btn" data-id="@per.Id" style="display:none;text-align: center">
+                        <img src="~/img/cancel.png" alt="Cancel" width="30" height="30" />
+                    </button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@* <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> *@
+<script src='https://code.jquery.com/jquery-3.6.3.min.js'></script>
+<script>
+        $(document).ready(function () {
+        $(".delete_btn").click(function () { // work for delete a name
+            var id = $(this).data("id");
+            var row = $("#row-" + id);
+
+            $.ajax({
+                url: '@Url.Action("DeletePerson", "Home")',
+                type: 'POST',
+                data: { id: id },
+                async: false,
+                success: function (response) {
+                    debugger;
+                    if (response.success) {
+
+                        row.fadeOut();
+                    } else {
+                        alert("Error: " + response.message);
+                    }
+                },
+                error: function () {
+                    alert("Error in Ajax call");
+                }
+            });
+        });
+    });
+</script>
+<script>
+    $(document).ready(function(){
+        $(".edit-btn").click(function(){
+            let id = $(this).data("id");
+            $("#name-"+id).hide();
+            $("#input-"+id).show();
+            $(this).hide();
+            $(".save-btn[data-id='" + id + "']").show();
+            $(".cancel-btn[data-id='" + id + "']").show();
+        });
+
+        $(".cancel-btn").click(function(){
+            let id = $(this).data("id");
+            $("#name-"+id).show();
+            $("#input-"+id).hide();
+            
+            $(".edit-btn[data-id='" + id + "']").show();
+            $(".save-btn[data-id='" + id + "']").hide();
+            $(this).hide();
+        });
+
+        $(".save-btn").click(function(){
+            let id = $(this).data("id");
+            let newName = $("#input-"+id).val();
+
+            $.ajax({
+                url:'@Url.Action("UpdatePerson","Home")',
+                type:'POST',
+                data : {id:id, name:newName},
+                success: function(response){
+                      if(response.success){
+                          $("#name-"+id).text(newName).show();
+                          $("#input-"+id).hide();
+                          $(".edit-btn[data-id='" + id + "']").show();
+                          $(".save-btn[data-id='" + id + "']").hide();
+                          $(".cancel-btn[data-id='" + id + "']").hide();
+                      }
+                      else{
+                          alert("Error while updating");
+                      }
+                },
+                error : function(){
+                    alert("error during ajax call");
+                }
+
+            });
+        });
+    });
+</script>

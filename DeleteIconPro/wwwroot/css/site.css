@@ -1,0 +1,150 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f7fa;
+    margin: 0;
+    padding: 0;
+}
+/* From Uiverse.io by levxyca */
+/*button {
+    font-size: 1.5rem;
+    color: #fafafa;
+    text-transform: uppercase;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: 2px solid #fafafa;
+    background: #252525;
+    box-shadow: 3px 3px #fafafa;
+    cursor: pointer;
+    margin-left:30px;
+    margin: 35px 0;
+}*/
+
+    button:active {
+        box-shadow: none;
+        transform: translate(3px, 3px);
+    }
+
+.person-name {
+    font-size: 18px;
+    color: #333;
+    margin-right: 10px;
+}
+#personTable{
+    margin-left:170px;
+   
+}
+h2 {
+    text-align: center;
+    color: #4a4a4a;
+    margin-top: 50px;
+    font-size: 28px;
+    font-weight: 700;
+}
+table {
+    width: 80%;
+    margin: 30px auto;
+    border-collapse: collapse;
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+    
+    padding: 15px;
+    text-align: center;
+    font-size: 16px;
+}
+
+th {
+    background-color: #055160;
+    color: white;
+}
+td {
+    background-color: #f9f9f9;
+}
+.edit-name {
+    padding: 5px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    display: inline-block;
+    width: 100%;
+}
+button {
+    background-color: #007bff;
+    border: none;
+    color: white;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin: 5px;
+    transition: all 0.3s ease;
+}
+
+    button:hover {
+        background-color: #0056b3;
+    }
+
+.delete_btn {
+    background-color: #e74c3c;
+}
+
+    .delete_btn:hover {
+        background-color: #c0392b;
+    }
+
+.edit-btn, .save-btn, .cancel-btn {
+    background-color: #f39c12;
+}
+
+    .edit-btn:hover {
+        background-color: #e67e22;
+    }
+
+.save-btn {
+    background-color: #2ecc71;
+}
+
+    .save-btn:hover {
+        background-color: #27ae60;
+    }
+
+.cancel-btn {
+    background-color: #95a5a6;
+}
+
+    .cancel-btn:hover {
+        background-color: #7f8c8d;
+    }
+
+.button-container {
+    display: flex;
+    justify-content: center;
+}
+.container-fluid {
+    background-color: #055160;
+}
+.navbar-brand{
+
+}
